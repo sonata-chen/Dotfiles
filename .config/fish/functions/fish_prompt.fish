@@ -1,16 +1,14 @@
 function fish_prompt --description 'Write out the prompt'
     set -l last_status $status
 
+    # Prefix
+    set_color red --dim --bold
+    echo -n "["
+    set_color normal
+
     # User
     set_color $fish_color_user
     echo -n $USER
-    set_color normal
-
-    echo -n '@'
-
-    # Host
-    set_color $fish_color_host
-    echo -n (prompt_hostname)
     set_color normal
 
     echo -n ':'
@@ -20,8 +18,13 @@ function fish_prompt --description 'Write out the prompt'
     echo -n (prompt_pwd)
     set_color normal
 
-    __terlar_git_prompt
-    fish_hg_prompt
+    # Suffix
+    set_color red --dim --bold
+    echo -n "]"
+    set_color normal
+
+    # Git prompt
+    my_git_prompt
     echo
 
     if not test $last_status -eq 0
