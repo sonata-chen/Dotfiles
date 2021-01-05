@@ -293,7 +293,7 @@ font:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1 
+background_opacity: 0.95
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -668,6 +668,7 @@ schemes:
       cyan:    '0x2AA198'
       white:   '0xecf0f1'
 
+# https://rigel.netlify.app/
   rigel: &rigel
     primary:
       background: '0x002635'
@@ -691,5 +692,47 @@ schemes:
       cyan:    '0x00ffff'
       white:   '0xb7cff9'
 
-# nord is my favorite
-colors: *nord
+# Base16 Tomorrow Night 256 - alacritty color config
+# Chris Kempson (http://chriskempson.com)
+  # Default colors
+  tomorrow: &tomorrow
+    primary:
+      background: '0x2d2d2d'
+      foreground: '0xcccccc'
+
+      # Colors the cursor will use if `custom_cursor_colors` is true
+      cursor:
+      text: '0x2d2d2d'
+      cursor: '0xcccccc'
+
+      # Normal colors
+      normal:
+      black:   '0x2d2d2d'
+      red:     '0xf2777a'
+      green:   '0x99cc99'
+      yellow:  '0xffcc66'
+      blue:    '0x6699cc'
+      magenta: '0xcc99cc'
+      cyan:    '0x66cccc'
+      white:   '0xcccccc'
+
+      # Bright colors
+      bright:
+      black:   '0x999999'
+      red:     '0xf2777a'
+      green:   '0x99cc99'
+      yellow:  '0xffcc66'
+      blue:    '0x6699cc'
+      magenta: '0xcc99cc'
+      cyan:    '0x66cccc'
+      white:   '0xffffff'
+
+      indexed_colors:
+      - { index: 16, color: '0xf99157' }
+      - { index: 17, color: '0xa3685a' }
+      - { index: 18, color: '0x393939' }
+      - { index: 19, color: '0x515151' }
+      - { index: 20, color: '0xb4b7b4' }
+      - { index: 21, color: '0xe0e0e0' }
+
+colors: *tomorrow

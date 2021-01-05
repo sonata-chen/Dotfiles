@@ -1,14 +1,20 @@
 " Setup Plugin Manager  (https://github.com/junegunn/vim-plug)
 call plug#begin('~/.vim/plugged')
 Plug 'joshdick/onedark.vim'
+Plug 'dag/vim-fish'
 Plug 'scrooloose/nerdtree'
 Plug 'plasticboy/vim-markdown'
 Plug 'arcticicestudio/nord-vim'
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 " Theme
 colorscheme onedark
-highlight Normal ctermbg=NONE guibg=NONE
+let  base16colorspace=256
+set termguicolors
+colorscheme base16-tomorrow-night-eighties
+" colorscheme nord
+" highlight Normal ctermbg=NONE guibg=NONE
 
 " Tab and Spaces
 set tabstop=4
@@ -49,7 +55,7 @@ function! Enter()
 
     " Right side settings
     setl statusline+=%=
-    setl statusline+=%#WildMenu#  " color code
+    setl statusline+=%#FoldColumn#  " color code
     setl statusline+=\ C[%b:%B]   " value of character under cursor
     setl statusline+=\ %c:%l/%L   " line number and column number
     setl statusline+=\ %p/%%      " percentage through file in lines
@@ -70,4 +76,8 @@ autocmd WinEnter,BufEnter * :call Enter()
 autocmd WinLeave,BufLeave * :call Leave()
 " autocmd WinEnter,VimEnter,BufRead,BufEnter,BufNewFile * :call Enter()
 
+let mapleader = ","
 map <leader>sv :source $MYVIMRC<CR>
+map <F2> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+set list listchars=eol:¬,tab:▸\ ,trail:.,
