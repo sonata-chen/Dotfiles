@@ -10,11 +10,11 @@ for file in $argv
         and test -x $file
         echo "VST"
         mv -v $file $vst_path
-    else if  string  match -rq '.*.vst3?/' $file
+    else if  string  match -rq '.*\.vst3/?' $file
         and test -d $file/Contents
         echo "VST3"
         mv -v $file $vst3_path
-    else if  string  match -rq '.*.lv2?/' $file
+    else if  string  match -rq '.*\.lv2/?' $file
         and test -d $file
         echo "lv2"
         mv -v $file $lv2_path
