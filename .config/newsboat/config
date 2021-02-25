@@ -1,0 +1,9 @@
+browser brave
+
+color background          white    black
+color listnormal          white    black      dim
+color listfocus           white    color237   bold
+color listnormal_unread   magenta  black      dim
+color listfocus_unread    magenta  color237   bold
+color info                yellow   black      bold   underline   dim
+color article             white    black      dim
