@@ -29,6 +29,9 @@ set fish_pager_color_prefix white --bold --underline
 set fish_pager_color_progress black --bold --background=magenta
 set fish_pager_color_selected_background --background=444
 
+fish_add_path --path $HOME/scripts
+fish_add_path --path $HOME/.local/bin
+
 eval (dircolors -b ~/.dircolors |sed 2d |string replace "LS_COLORS="  "set -x LS_COLORS ")
 
 set -x BAT_THEME "Solarized (dark)"
@@ -45,10 +48,6 @@ set -x MANPAGER "nvim +Man!"
 
 set -x EDITOR nvim
 set -x VISUAL nvim
-
-# set  PATH $HOME/scripts $HOME/.local/bin $PATH
-fish_add_path --path $HOME/scripts
-fish_add_path --path $HOME/.local/bin
 
 alias config "/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
 alias ntouvpn "sudo openfortivpn 140.121.81.181 -u 00753114 --trusted-cert 889b0abcb900f458d46005ee6b868fc24e69ba3b4d1a5ba11a334f2807c9bf6d"
