@@ -48,24 +48,48 @@ local on_attach = function(client, bufnr)
     )
   end
 
-  -- require'lsp_signature'.on_attach()
+  require'lsp_signature'.on_attach()
   require('aerial').on_attach(client, bufnr)
 end
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = { 'clangd', 'rust_analyzer' }
+-- local servers = { 'clangd', 'rust_analyzer' }
+-- local servers = { 'rust_analyzer' }
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-end
+-- for _, lsp in ipairs(servers) do
+--   lspconfig[lsp].setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--   }
+-- end
+
+require('clangd_extensions').setup {
+    server = {
+        -- options to pass to nvim-lspconfig
+        -- i.e. the arguments to require("lspconfig").clangd.setup({})
+      on_attach = on_attach,
+      capabilities = capabilities,
+    },
+}
+
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+})
 -- Example custom server
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')

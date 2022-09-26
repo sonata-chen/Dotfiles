@@ -60,6 +60,8 @@ require('packer').startup(function()
       require 'config.lsp'
     end,
   }
+  use 'p00f/clangd_extensions.nvim'
+  use 'simrat39/rust-tools.nvim'
 
   use {
     'nvim-telescope/telescope.nvim',
