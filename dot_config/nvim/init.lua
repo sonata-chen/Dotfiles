@@ -1,8 +1,6 @@
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  is_bootstrap = true
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
   vim.cmd [[packadd packer.nvim]]
 end
@@ -126,38 +124,15 @@ require('packer').startup(function()
       vim.cmd [[ let g:neo_tree_remove_legacy_commands = 1 ]]
     end,
   }
-  use {
-    'kyazdani42/nvim-tree.lua',
-    config = function()
-      require 'config.nvim-tree'
-    end,
-  }
 
   use 'norcalli/nvim-colorizer.lua'
   use { 'eraserhd/parinfer-rust', disable = true }
 
   use 'vim-scripts/BufOnly.vim'
+  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
   use 'luukvbaal/stabilize.nvim'
   use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
-
-  if is_bootstrap then
-    require('packer').sync()
-  end
 end)
-
-
--- When we are bootstrapping a configuration, it doesn't
--- make sense to execute the rest of the init.lua.
---
--- You'll need to restart nvim, and then it will work.
-if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Wait until Packer completes,'
-  print '       then restart nvim'
-  print '=================================='
-  return
-end
 
 -- tabs
 vim.opt.tabstop = 4 -- Number of spaces that a <Tab> in the file counts for.
@@ -228,7 +203,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').grep_string)
 vim.keymap.set('n', '<leader>sp', require('telescope.builtin').live_grep)
 
 -- vim.keymap.set('n', '<leader>n', ':NvimTreeFindFileToggle<cr>', { silent = true })
-vim.keymap.set('n', '<leader>n', ':Neotree toggle reveal<cr>', { silent = true })
+vim.keymap.set('n', '<leader>n', ':Neotree reveal<cr>', { silent = true })
 vim.keymap.set('n', '<leader>b', ':BOnly<cr>')
 vim.keymap.set('n', '<leader>w', ':w<cr>')
 
