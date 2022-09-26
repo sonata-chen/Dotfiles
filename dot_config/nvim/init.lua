@@ -145,6 +145,20 @@ require('packer').startup(function()
   end
 end)
 
+
+-- When we are bootstrapping a configuration, it doesn't
+-- make sense to execute the rest of the init.lua.
+--
+-- You'll need to restart nvim, and then it will work.
+if is_bootstrap then
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
+  return
+end
+
 -- tabs
 vim.opt.tabstop = 4 -- Number of spaces that a <Tab> in the file counts for.
 vim.opt.shiftwidth = 0 -- When zero the 'tabstop' value will be used.
