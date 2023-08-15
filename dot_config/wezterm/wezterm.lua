@@ -29,7 +29,7 @@ local colors_bright = {
 
 
 return {
-  default_prog = {"/bin/fish"},
+  default_prog = {"/usr/bin/fish"},
   -- font settings
   -- font = wezterm.font("FiraCode Nerd Font Mono"),
   font = wezterm.font_with_fallback({
@@ -105,7 +105,7 @@ return {
     },
   },
 
-  use_ime = true, -- only XIM is implemented
+  use_ime = false, -- only XIM is implemented
 
   keys = {
     {key='F7', action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
