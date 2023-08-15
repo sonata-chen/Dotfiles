@@ -70,7 +70,7 @@ set -x IDF_PATH $HOME/src/ntou/esp-idf
 set -x ADF_PATH $HOME/src/ntou/esp-adf
 alias get_idf='. $IDF_PATH/export.fish'
 
-alias gl="git   log --graph --pretty='%C(auto)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+alias gl="git   log --graph --pretty='%C(auto)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"
 abbr -a -- gs 'git status'
 abbr -a -- ga 'git add'
 abbr -a -- gc 'git commit -m'
@@ -78,6 +78,7 @@ abbr -a -- gp 'git push'
 abbr -a -- gf 'git fetch'
 abbr -a -- rm 'rm -i'
 abbr -a -- qm 'udisksctl mount -b'
+abbr -a -- fs 'fenv source'
 
 if command -q exa
     alias ll='exa -l --group-directories-first'
@@ -97,10 +98,13 @@ if command -q mold
 end
 
 function d
-    while test $PWD != "/"
-        if test -d .git
+    set target $PWD
+    while test $target != "/"
+        if test -d $target/.git
+            cd "$target"
             break
+        else
+            set target (realpath $target/../)
         end
-        cd ..
     end
 end
