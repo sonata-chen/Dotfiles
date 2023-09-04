@@ -55,6 +55,24 @@ local function config_lsp()
     -- pyright = {},
     rust_analyzer = {},
     -- tsserver = {},
+    pylsp = {
+      pylsp = {
+        plugins = {
+          pycodestyle = {
+            maxLineLength = 88,
+          },
+          ruff = {
+            enabled = true,
+            lineLength = 88,
+            extendSelect = { "I" },
+          },
+          black = {
+            enabled = true,
+          },
+        }
+      }
+    },
+    -- ruff_lsp = {},
 
     lua_ls = {
       Lua = {
