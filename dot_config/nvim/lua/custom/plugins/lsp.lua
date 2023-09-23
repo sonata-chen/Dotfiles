@@ -58,21 +58,18 @@ local function config_lsp()
     pylsp = {
       pylsp = {
         plugins = {
-          pycodestyle = {
-            maxLineLength = 88,
-          },
           ruff = {
             enabled = true,
-            lineLength = 88,
+            -- lineLength = 88,
             extendSelect = { "I" },
           },
           black = {
             enabled = true,
+            -- lineLength = 88,
           },
         }
       }
     },
-    -- ruff_lsp = {},
 
     lua_ls = {
       Lua = {
@@ -108,18 +105,6 @@ local function config_lsp()
       }
     end,
 
-    clangd = function()
-      require("clangd_extensions").setup {
-        server = {
-          -- options to pass to nvim-lspconfig
-          -- i.e. the arguments to require("lspconfig").clangd.setup({})
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = servers["clangd"],
-        },
-      }
-    end,
-
     rust_analyzer = function()
       require("rust-tools").setup {
         server = {
@@ -127,7 +112,7 @@ local function config_lsp()
           -- i.e. the arguments to require("lspconfig").clangd.setup({})
           capabilities = capabilities,
           on_attach = on_attach,
-          settings = servers["ust_analyze"],
+          settings = servers["rust_analyzer"],
         },
       }
     end,
