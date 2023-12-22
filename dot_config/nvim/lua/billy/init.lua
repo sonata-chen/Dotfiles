@@ -99,3 +99,9 @@ vim.cmd [[
   nnoremap <leader>j :m .+1<CR>==
   nnoremap <leader>k :m .-2<CR>==
 ]]
+
+vim.cmd [[
+  set foldmethod=expr
+  set foldexpr=nvim_treesitter#foldexpr()
+  set nofoldenable " Disable folding at startup.
+]]

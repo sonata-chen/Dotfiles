@@ -3,4 +3,10 @@
 --
 -- See the kickstart.nvim README for more information
 
-return {}
+return {
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {},
+  },
+}
