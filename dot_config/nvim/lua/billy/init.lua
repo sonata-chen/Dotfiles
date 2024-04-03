@@ -37,8 +37,8 @@ vim.opt.shiftwidth = 4 -- When zero the 'tabstop' value will be used.
 vim.opt.expandtab = true -- In Insert mode: Use the appropriate number of spaces to insert a <Tab>.
 
 -- line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.wo.number = true
+vim.wo.relativenumber = true
 
 -- characters to show tabs and trailing blanks
 vim.opt.list = true
@@ -51,7 +51,6 @@ vim.opt.showmode = false
 vim.opt.breakindent = true
 vim.opt.cursorline = true
 
--- vim.opt.breakindent = true
 vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 
@@ -62,19 +61,29 @@ vim.opt.mouse = 'a'
 vim.opt.scrolloff = 3
 
 -- Searching
-vim.opt.hlsearch = false
+-- vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.undofile = true
 vim.opt.updatetime = 250
 vim.opt.swapfile = false
+vim.opt.timeout = true
+vim.opt.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience.
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 
 -- Avoid showing extra message when using completion.
 vim.opt.shortmess:append 'c'
+
+-- Sync clipboard between OS and Neovim.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.o.clipboard = 'unnamedplus'
+
+-- Keep signcolumn on by default
+vim.wo.signcolumn = 'yes'
 
 
 vim.cmd [[
@@ -105,3 +114,6 @@ vim.cmd [[
   set foldexpr=nvim_treesitter#foldexpr()
   set nofoldenable " Disable folding at startup.
 ]]
+
+
+vim.keymap.set({ 'n' }, '<Space>l', ':Format<CR>', { silent = true })
