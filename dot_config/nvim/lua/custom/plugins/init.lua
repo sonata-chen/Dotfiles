@@ -7,11 +7,12 @@ return {
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
+    enabled = true,
     opts = {},
   },
   {
     "keaising/im-select.nvim",
     opts = {},
-    enable = false,
+    enabled = false,
   },
 }

@@ -1,6 +1,6 @@
 return
-  {
-    'ahmedkhalf/project.nvim',
-    name = 'project_nvim',
-    opts = {},
-  }
+{
+  'ahmedkhalf/project.nvim',
+  name = 'project_nvim',
+  opts = {},
+}

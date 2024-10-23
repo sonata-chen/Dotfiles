@@ -1,16 +1,29 @@
 local function config_lsp()
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-         vim.lsp.diagnostic.on_publish_diagnostics, {
-           -- Enable underline, use default values
-           underline = true,
-           -- Enable virtual text, override spacing to 4
-           virtual_text = {
-             spacing = 4,
-           },
-           signs = false,
-           update_in_insert = true,
-         }
-       )
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      -- Enable underline, use default values
+      underline = true,
+      -- Enable virtual text, override spacing to 4
+      virtual_text = {
+        spacing = 4,
+      },
+      signs = false,
+      update_in_insert = true,
+    }
+  )
+
+  vim.lsp.handlers["textDocument/diagnostic"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_diagnostic, {
+      -- Enable underline, use default values
+      underline = true,
+      -- Enable virtual text, override spacing to 4
+      virtual_text = {
+        spacing = 4,
+      },
+      signs = false,
+      update_in_insert = true,
+    }
+  )
 
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -99,7 +112,6 @@ local function config_lsp()
   --  the `settings` field of the server config. You must look up that documentation yourself.
   local servers = {
     clangd = {},
-    rust_analyzer = {},
     ruff = {},
     pylsp = {
       pylsp = {
@@ -136,29 +148,22 @@ local function config_lsp()
   local mason_lspconfig = require 'mason-lspconfig'
 
   mason_lspconfig.setup {
-    ensure_installed = vim.tbl_keys(servers),
+    -- ensure_installed = vim.tbl_keys(servers),
   }
 
-  mason_lspconfig.setup_handlers {
-    function(server_name)
-      require('lspconfig')[server_name].setup {
-        capabilities = capabilities,
-        -- on_attach = on_attach,
-        settings = servers[server_name],
-      }
-    end,
+  for server, _ in pairs(servers) do
+    require('lspconfig')[server].setup {
+      capabilities = capabilities,
+      settings = servers[server]
+    }
+  end
 
-    rust_analyzer = function()
-      require("rust-tools").setup {
-        server = {
-          -- options to pass to nvim-lspconfig
-          -- i.e. the arguments to require("lspconfig").clangd.setup({})
-          capabilities = capabilities,
-          -- on_attach = on_attach,
-          settings = servers["rust_analyzer"],
-        },
-      }
-    end,
+  require("rust-tools").setup {
+    server = {
+      -- options to pass to nvim-lspconfig
+      capabilities = capabilities,
+      settings = {},
+    },
   }
 end
 

@@ -2,7 +2,7 @@
 if vim.fn.executable('fcitx5-remote') == 1 then
   local function store_fcitx5_state()
     -- use string.sub() to remove newline character
-    vim.w.fcitx5state =  string.sub(vim.fn.system('fcitx5-remote'), 1, 1)
+    vim.w.fcitx5state = string.sub(vim.fn.system('fcitx5-remote'), 1, 1)
   end
 
   store_fcitx5_state()
@@ -31,9 +31,9 @@ if vim.fn.executable('fcitx5-remote') == 1 then
 end
 
 -- tabs
-vim.opt.tabstop = 8 -- Number of spaces that a <Tab> in the file counts for.
-vim.opt.softtabstop = 4 -- When zero the 'tabstop' value will be used.
-vim.opt.shiftwidth = 4 -- When zero the 'tabstop' value will be used.
+vim.opt.tabstop = 8      -- Number of spaces that a <Tab> in the file counts for.
+vim.opt.softtabstop = 4  -- When zero the 'tabstop' value will be used.
+vim.opt.shiftwidth = 4   -- When zero the 'tabstop' value will be used.
 vim.opt.expandtab = true -- In Insert mode: Use the appropriate number of spaces to insert a <Tab>.
 
 -- line numbers
@@ -87,33 +87,33 @@ vim.wo.signcolumn = 'yes'
 
 
 vim.cmd [[
-  " Keeping it centered
-  nnoremap n nzzzv
-  nnoremap N Nzzzv
-  nnoremap J mzJ`z
-
-  " Undo break points
-  inoremap , ,<c-g>u
-  inoremap . .<c-g>u
-  inoremap - -<c-g>u
-  inoremap _ _<c-g>u
-  inoremap ! !<c-g>u
-  inoremap ? ?<c-g>u
-
   " Moving text
-  vnoremap <C-j> :m '>+1<CR>gv=gv
-  vnoremap <C-k> :m '<-2<CR>gv=gv
-  inoremap <C-j> <esc>:m .+1<CR>==
-  inoremap <C-k> <esc>:m .-2<CR>==
-  nnoremap <leader>j :m .+1<CR>==
-  nnoremap <leader>k :m .-2<CR>==
+  vnoremap <M-j> :m '>+1<CR>gv=gv
+  vnoremap <M-k> :m '<-2<CR>gv=gv
+  inoremap <M-j> <esc>:m .+1<CR>==
+  inoremap <M-k> <esc>:m .-2<CR>==
+  nnoremap <M-j> :m .+1<CR>==
+  nnoremap <M-k> :m .-2<CR>==
 ]]
 
-vim.cmd [[
-  set foldmethod=expr
-  set foldexpr=nvim_treesitter#foldexpr()
-  set nofoldenable " Disable folding at startup.
-]]
+-- enable treesitter folding module
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldenable = false -- Disable folding at startup.
 
 
 vim.keymap.set({ 'n' }, '<Space>l', ':Format<CR>', { silent = true })
+
+-- Undo break points
+vim.keymap.set("n", ",", ",<c-g>u")
+vim.keymap.set("n", ".", ".<c-g>u")
+vim.keymap.set("n", "-", "-<c-g>u")
+vim.keymap.set("n", "_", "_<c-g>u")
+vim.keymap.set("n", "!", "!<c-g>u")
+vim.keymap.set("n", "?", "?<c-g>u")
+
+
+-- Keeping it centered
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "J", "mzJ`z")
