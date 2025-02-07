@@ -33,7 +33,7 @@ set fish_pager_color_selected_background --background=black
 fish_add_path --path $HOME/scripts
 fish_add_path --path $HOME/.local/bin
 
-eval (dircolors -b ~/.dircolors |sed 2d |string replace "LS_COLORS="  "set -x LS_COLORS ")
+# eval (dircolors -b ~/.dircolors |sed 2d |string replace "LS_COLORS="  "set -x LS_COLORS ")
 
 set -x BAT_THEME "TwoDark"
 # set -x BAT_THEME "ansi-dark"
@@ -44,17 +44,14 @@ set -x FZF_DEFAULT_OPTS '
   --color info:6,prompt:5,spinner:1,pointer:3,marker:1,header:1:bold'
 fzf_key_bindings
 
-# set -x MANPAGER "nvim -c 'set ft=man' -"
 set -x MANPAGER "nvim +Man!"
-# set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 set -x EDITOR nvim
 set -x VISUAL nvim
 
-alias config "/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
-alias ntouvpn "sudo openfortivpn 140.121.81.181 -u 00753114 --trusted-cert 889b0abcb900f458d46005ee6b868fc24e69ba3b4d1a5ba11a334f2807c9bf6d"
 alias cat='bat'
 alias nb='newsboat'
+alias ip='ip -c'
 
 # shell prompt
 starship init fish | source
@@ -82,12 +79,12 @@ abbr -a -- rm 'rm -i'
 abbr -a -- qm 'udisksctl mount -b'
 abbr -a -- fs 'fenv source'
 
-if command -q exa
-    alias ll='exa -l --group-directories-first'
-    alias la='exa -al --group-directories-first'
-    alias ls='exa'
-    alias ld='exa -d .* --group-directories-first'
-    alias lt='exa --tree'
+if command -q eza
+    alias ll='eza -l --group-directories-first'
+    alias la='eza -al --group-directories-first'
+    alias ls='eza'
+    alias ld='eza -d .* --group-directories-first'
+    alias lt='eza --tree'
 else
     alias ll='ls -l --group-directories-first'
     alias la='ls -al --group-directories-first'
@@ -95,9 +92,11 @@ else
     alias lt='tree'
 end
 
-if command -q mold
-    alias cmake='mold -run cmake'
-end
+# if command -q mold
+#     alias cmake='mold -run cmake'
+# end
+
+alias p='nvim -m  -R  -c ":set nowrap" -c ":noremap q :q<CR>"'
 
 function d
     set target $PWD
@@ -110,3 +109,11 @@ function d
         end
     end
 end
+
+# CMake
+set -x CMAKE_COLOR_DIAGNOSTICS "ON"
+set -x CMAKE_GENERATOR "Ninja Multi-Config"
+set -x CMAKE_C_COMPILER_LAUNCHER "ccache"
+set -x CMAKE_CXX_COMPILER_LAUNCHER "ccache"
+set -x CMAKE_EXPORT_COMPILE_COMMANDS "ON"
+set -x CMAKE_TOOLCHAIN_FILE "$HOME/.config/tool_chain.cmake"
