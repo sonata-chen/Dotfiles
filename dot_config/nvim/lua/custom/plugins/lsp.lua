@@ -113,6 +113,12 @@ local function config_lsp()
   local servers = {
     clangd = {},
     ruff = {},
+    basedpyright = {
+      analysis = {
+        diagnosticMode = "openFilesOnly",
+      }
+    },
+    --[[
     pylsp = {
       pylsp = {
         plugins = {
@@ -125,6 +131,7 @@ local function config_lsp()
         }
       }
     },
+    ]] --
 
     lua_ls = {
       Lua = {

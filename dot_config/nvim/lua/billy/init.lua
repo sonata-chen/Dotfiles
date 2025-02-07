@@ -80,7 +80,7 @@ vim.opt.shortmess:append 'c'
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+-- vim.o.clipboard = 'unnamedplus'
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
@@ -105,15 +105,19 @@ vim.opt.foldenable = false -- Disable folding at startup.
 vim.keymap.set({ 'n' }, '<Space>l', ':Format<CR>', { silent = true })
 
 -- Undo break points
-vim.keymap.set("n", ",", ",<c-g>u")
-vim.keymap.set("n", ".", ".<c-g>u")
-vim.keymap.set("n", "-", "-<c-g>u")
-vim.keymap.set("n", "_", "_<c-g>u")
-vim.keymap.set("n", "!", "!<c-g>u")
-vim.keymap.set("n", "?", "?<c-g>u")
+vim.keymap.set("i", ",", ",<c-g>u")
+vim.keymap.set("i", ".", ".<c-g>u")
+vim.keymap.set("i", "-", "-<c-g>u")
+vim.keymap.set("i", "_", "_<c-g>u")
+vim.keymap.set("i", "!", "!<c-g>u")
+vim.keymap.set("i", "?", "?<c-g>u")
 
 
 -- Keeping it centered
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "J", "mzJ`z")
+
+vim.keymap.set({ "n", "x", "o" }, "gm", "%")
+vim.keymap.set({ "n", "x", "o" }, "gh", "^")
+vim.keymap.set({ "n", "x", "o" }, "gl", "$")

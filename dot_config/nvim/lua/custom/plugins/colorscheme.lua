@@ -1,4 +1,6 @@
 return
+{
+
   { -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
@@ -10,6 +12,16 @@ return
     },
     config = function(_, opts)
       require('onedark').setup(opts)
-      vim.cmd.colorscheme 'onedark'
+      -- vim.cmd.colorscheme 'onedark'
+    end,
+  },
+  {
+
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function(_, opts)
+      vim.cmd.colorscheme 'tokyonight-night'
     end,
   }
+}
