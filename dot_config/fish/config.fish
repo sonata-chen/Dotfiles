@@ -1,35 +1,5 @@
 set fish_greeting
 
-# set fish_color_autosuggestion brblack
-set fish_color_autosuggestion white
-set fish_color_cancel red --bold
-set fish_color_command magenta
-set fish_color_comment white
-set fish_color_cwd green --bold
-set fish_color_cwd_root red
-set fish_color_end red
-set fish_color_error red --bold
-set fish_color_escape brcyan
-set fish_color_host normal
-set fish_color_host_remote yellow
-set fish_color_match yellow
-set fish_color_normal normal
-set fish_color_operator green
-set fish_color_param brblue
-set fish_color_quote yellow
-set fish_color_redirection brgreen
-set fish_color_selection normal
-set fish_color_status red
-set fish_color_user yellow
-set fish_color_valid_path --underline
-set fish_color_history_current --bold
-set fish_color_search_match --background=black
-set fish_pager_color_completion green
-set fish_pager_color_description blue
-set fish_pager_color_prefix yellow --bold
-set fish_pager_color_progress cyan --underline --bold
-set fish_pager_color_selected_background --background=black
-
 fish_add_path --path $HOME/scripts
 fish_add_path --path $HOME/.local/bin
 
