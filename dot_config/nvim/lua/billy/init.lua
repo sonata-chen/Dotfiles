@@ -85,39 +85,17 @@ vim.opt.shortmess:append 'c'
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
-
-vim.cmd [[
-  " Moving text
-  vnoremap <M-j> :m '>+1<CR>gv=gv
-  vnoremap <M-k> :m '<-2<CR>gv=gv
-  inoremap <M-j> <esc>:m .+1<CR>==
-  inoremap <M-k> <esc>:m .-2<CR>==
-  nnoremap <M-j> :m .+1<CR>==
-  nnoremap <M-k> :m .-2<CR>==
-]]
-
 -- enable treesitter folding module
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldenable = false -- Disable folding at startup.
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function()
+    if not pcall(vim.treesitter.start) then
+      return
+    end
 
+    vim.opt_local.foldmethod = 'expr'
+    vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
-vim.keymap.set({ 'n' }, '<Space>l', ':Format<CR>', { silent = true })
-
--- Undo break points
-vim.keymap.set("i", ",", ",<c-g>u")
-vim.keymap.set("i", ".", ".<c-g>u")
-vim.keymap.set("i", "-", "-<c-g>u")
-vim.keymap.set("i", "_", "_<c-g>u")
-vim.keymap.set("i", "!", "!<c-g>u")
-vim.keymap.set("i", "?", "?<c-g>u")
-
-
--- Keeping it centered
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("n", "J", "mzJ`z")
-
-vim.keymap.set({ "n", "x", "o" }, "gm", "%")
-vim.keymap.set({ "n", "x", "o" }, "gh", "^")
-vim.keymap.set({ "n", "x", "o" }, "gl", "$")
+    vim.cmd.normal 'zx'
+    vim.opt_local.foldenable = false -- Disable folding at startup.
+  end
+})
