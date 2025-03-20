@@ -56,6 +56,7 @@ local function config_lsp()
   local servers = {
     clangd = {},
     ruff = {},
+    lua_ls = {},
     basedpyright = {
       analysis = {
         diagnosticMode = "openFilesOnly",
@@ -76,16 +77,7 @@ local function config_lsp()
     },
     ]] --
 
-    lua_ls = {
-      Lua = {
-        workspace = { checkThirdParty = false },
-        telemetry = { enable = false },
-      },
-    },
   }
-
-  -- Setup neovim lua configuration
-  require('neodev').setup()
 
   -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
   local capabilities = vim.lsp.protocol.make_client_capabilities()

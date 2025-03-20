@@ -15,6 +15,13 @@ return {
       end,
     },
     { 'nvim-telescope/telescope-ui-select.nvim' },
+    {
+      "nvim-telescope/telescope-frecency.nvim",
+      version = "*",
+      config = function()
+        require("telescope").load_extension "frecency"
+      end,
+    },
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
     { 'nvim-tree/nvim-web-devicons' },
