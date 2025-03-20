@@ -1,6 +1,6 @@
-vim.keymap.set('n', '<leader>x', ":.lua<CR>")
-vim.keymap.set('v', '<leader>x', ":lua<CR>")
-vim.keymap.set('n', '<leader>X', ":source %<CR>")
+vim.keymap.set('n', '<leader>x', ':.lua<CR>')
+vim.keymap.set('v', '<leader>x', ':lua<CR>')
+vim.keymap.set('n', '<leader>X', ':source %<CR>')
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -10,9 +10,7 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>s.', require('telescope').extensions.frecency.frecency,
-  { desc = '[S]earch Recent Files ("." for repeat)' }
-)
+vim.keymap.set('n', '<leader>s.', require('telescope').extensions.frecency.frecency, { desc = '[S]earch Recent Files ("." for repeat)' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -32,76 +30,69 @@ vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc =
 
 -- Shortcut for searching your Neovim configuration files
 vim.keymap.set('n', '<leader>sn', function()
-  require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
+  require('telescope.builtin').find_files { cwd = vim.fn.stdpath('config') }
 end, { desc = '[S]earch [N]eovim files' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', function()
   vim.diagnostic.goto_prev()
-  vim.cmd.normal "zz"
-end, { desc = "Go to previous diagnostic message" })
+  vim.cmd.normal('zz')
+end, { desc = 'Go to previous diagnostic message' })
 
 vim.keymap.set('n', ']d', function()
   vim.diagnostic.goto_next()
-  vim.cmd.normal "zz"
-end, { desc = "Go to next diagnostic message" })
+  vim.cmd.normal('zz')
+end, { desc = 'Go to next diagnostic message' })
 
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
-vim.keymap.set('n', '<leader>q', "<cmd>Trouble diagnostics toggle<CR>", { desc = "Open diagnostics list" })
-vim.keymap.set('n', '<leader>v', ":Trouble lsp_document_symbols toggle win.position=right<CR>",
-  { desc = "Open document symbols list" }
-)
-
+vim.keymap.set('n', '<leader>q', '<cmd>Trouble diagnostics toggle<CR>', { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>v', ':Trouble lsp_document_symbols toggle win.position=right<CR>', { desc = 'Open document symbols list' })
 
 -- Moving text
-vim.cmd [[
+vim.cmd([[
   vnoremap <M-j> :m '>+1<CR>gv=gv
   vnoremap <M-k> :m '<-2<CR>gv=gv
   inoremap <M-j> <esc>:m .+1<CR>==
   inoremap <M-k> <esc>:m .-2<CR>==
   nnoremap <M-j> :m .+1<CR>==
   nnoremap <M-k> :m .-2<CR>==
-]]
+]])
 
 -- Undo break points
-vim.keymap.set("i", ",", ",<c-g>u")
-vim.keymap.set("i", ".", ".<c-g>u")
-vim.keymap.set("i", "-", "-<c-g>u")
-vim.keymap.set("i", "_", "_<c-g>u")
-vim.keymap.set("i", "!", "!<c-g>u")
-vim.keymap.set("i", "?", "?<c-g>u")
+vim.keymap.set('i', ',', ',<c-g>u')
+vim.keymap.set('i', '.', '.<c-g>u')
+vim.keymap.set('i', '-', '-<c-g>u')
+vim.keymap.set('i', '_', '_<c-g>u')
+vim.keymap.set('i', '!', '!<c-g>u')
+vim.keymap.set('i', '?', '?<c-g>u')
 
 -- keeping it centered
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+vim.keymap.set('n', 'J', 'mzJ`z')
 
 -- g command
-vim.keymap.set({ "n", "x", "o" }, "gm", "%")
-vim.keymap.set({ "n", "x", "o" }, "gh", "^")
-vim.keymap.set({ "n", "x", "o" }, "gl", "$")
-vim.keymap.set({ "n" }, "ga", "<c-6>")
+vim.keymap.set({ 'n', 'x', 'o' }, 'gm', '%')
+vim.keymap.set({ 'n', 'x', 'o' }, 'gh', '^')
+vim.keymap.set({ 'n', 'x', 'o' }, 'gl', '$')
+vim.keymap.set({ 'n' }, 'ga', '<c-6>')
 
 -- System clipboard
-vim.keymap.set({ "n", "x" }, "<leader>f", '"+', { desc = "clipboard register" })
+vim.keymap.set({ 'n', 'x' }, '<leader>f', '"+', { desc = 'clipboard register' })
 
 -- Oil file explorer
-vim.keymap.set({ "n" }, '<leader>o',
-  function() require "oil".open(nil, { preview = { vertical = true } }) end,
-  { desc = "open oil file explorer" })
+vim.keymap.set({ 'n' }, '<leader>o', function()
+  require('oil').open(nil, { preview = { vertical = true } })
+end, { desc = 'open oil file explorer' })
 
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('oil-close', { clear = true }),
   pattern = 'oil',
   callback = function(event)
-    vim.keymap.set({ "n" }, '<leader>o',
-      require "oil".close,
-      { buffer = event.buf, desc = "close oil file explorer" })
-  end
+    vim.keymap.set({ 'n' }, '<leader>o', require('oil').close, { buffer = event.buf, desc = 'close oil file explorer' })
+  end,
 })
-
-
 
 -- LSP keymaps
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -161,7 +152,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Create a command `:Format` local to the LSP buffer
     vim.api.nvim_buf_create_user_command(event.buf, 'Format', function(_)
-      vim.lsp.buf.format({ async = true })
+      vim.lsp.buf.format { async = true }
     end, { desc = 'Format current buffer with LSP' })
 
     vim.keymap.set({ 'n' }, '<Space>l', ':Format<CR>', { silent = true })

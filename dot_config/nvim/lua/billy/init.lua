@@ -31,9 +31,9 @@ if vim.fn.executable('fcitx5-remote') == 1 then
 end
 
 -- tabs
-vim.opt.tabstop = 8      -- Number of spaces that a <Tab> in the file counts for.
-vim.opt.softtabstop = 4  -- When zero the 'tabstop' value will be used.
-vim.opt.shiftwidth = 4   -- When zero the 'tabstop' value will be used.
+vim.opt.tabstop = 8 -- Number of spaces that a <Tab> in the file counts for.
+vim.opt.softtabstop = 4 -- When zero the 'tabstop' value will be used.
+vim.opt.shiftwidth = 4 -- When zero the 'tabstop' value will be used.
 vim.opt.expandtab = true -- In Insert mode: Use the appropriate number of spaces to insert a <Tab>.
 
 -- line numbers
@@ -75,7 +75,7 @@ vim.opt.timeoutlen = 300
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 
 -- Avoid showing extra message when using completion.
-vim.opt.shortmess:append 'c'
+vim.opt.shortmess:append('c')
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -95,7 +95,7 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.foldmethod = 'expr'
     vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
-    vim.cmd.normal 'zx'
+    vim.cmd.normal('zx')
     vim.opt_local.foldenable = false -- Disable folding at startup.
-  end
+  end,
 })

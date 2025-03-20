@@ -1,5 +1,4 @@
-return
-{
+return {
 
   { -- Theme inspired by Atom
     'navarasu/onedark.nvim',
@@ -7,8 +6,7 @@ return
     opts = {
       -- style = 'dark',
       style = 'warmer',
-      toggle_style_key = "<leader>ts"
-
+      toggle_style_key = '<leader>ts',
     },
     config = function(_, opts)
       require('onedark').setup(opts)
@@ -21,7 +19,7 @@ return
     lazy = false,
     priority = 1000,
     config = function(_, opts)
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme('tokyonight-night')
     end,
-  }
+  },
 }

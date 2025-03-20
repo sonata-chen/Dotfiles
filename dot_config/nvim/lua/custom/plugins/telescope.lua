@@ -11,15 +11,15 @@ return {
       --       refer to the README for telescope-fzf-native for more instructions.
       build = 'make',
       cond = function()
-        return vim.fn.executable 'make' == 1
+        return vim.fn.executable('make') == 1
       end,
     },
     { 'nvim-telescope/telescope-ui-select.nvim' },
     {
-      "nvim-telescope/telescope-frecency.nvim",
-      version = "*",
+      'nvim-telescope/telescope-frecency.nvim',
+      version = '*',
       config = function()
-        require("telescope").load_extension "frecency"
+        require('telescope').load_extension('frecency')
       end,
     },
 
@@ -54,5 +54,5 @@ return {
     -- Enable Telescope extensions if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
-  end
+  end,
 }
