@@ -38,14 +38,14 @@ end
 local tokyo_colors = modified_tokyo_night()
 
 return {
-  default_prog = { "/usr/bin/fish" },
+  default_prog = { "fish" },
 
   -- font settings
   font = wezterm.font_with_fallback({
     "JetBrainsMono Nerd Font Mono",
     "Noto Sans Mono CJK TC",
   }),
-  font_size = 14.5,
+  font_size = 22.5,
   warn_about_missing_glyphs = false,
 
   -- behaviours
@@ -53,7 +53,7 @@ return {
   hide_tab_bar_if_only_one_tab = true,
 
   -- appearances
-  window_padding = { left = 5, right = 5, top = 2, bottom = 2 },
+  window_padding = { left = 10, right = 10, top = 5, bottom = 5 },
   window_frame = { -- fancy tab mobe
     -- The font used in the tab bar.
     -- Roboto Bold is the default; this font is bundled
@@ -83,6 +83,8 @@ return {
   keys = {
     { key = 'F7', action = wezterm.action { SplitVertical = { domain = "CurrentPaneDomain" } } },
     { key = 'F8', action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" } } },
+    { key = 'UpArrow', mods = 'SHIFT', action = wezterm.action.ScrollToPrompt(-1) },
+    { key = 'DownArrow', mods = 'SHIFT', action = wezterm.action.ScrollToPrompt(1) },
   }
 }
 
