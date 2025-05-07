@@ -58,7 +58,7 @@ vim.opt.background = 'dark'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.mouse = 'a'
-vim.opt.scrolloff = 3
+vim.opt.scrolloff = 8
 
 -- Searching
 -- vim.opt.hlsearch = false
@@ -99,3 +99,6 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.foldenable = false -- Disable folding at startup.
   end,
 })
+
+
+vim.opt.exrc = true
