@@ -1,42 +1,5 @@
 local wezterm = require("wezterm")
 
-local function modified_tokyo_night()
-  local tokyo_colors = wezterm.get_builtin_color_schemes()['Tokyo Night']
-  local tab_bar = {
-    background = tokyo_colors.ansi[1],
-    inactive_tab_edge = tokyo_colors.background,
-    active_tab = {
-      bg_color = tokyo_colors.background,
-      fg_color = tokyo_colors.ansi[5],
-    },
-    inactive_tab = {
-      bg_color = tokyo_colors.background,
-      fg_color = tokyo_colors.brights[1],
-    },
-    inactive_tab_hover = {
-      bg_color = tokyo_colors.background,
-      fg_color = tokyo_colors.brights[1],
-    },
-    new_tab = {
-      bg_color = tokyo_colors.ansi[1],
-      fg_color = tokyo_colors.ansi[1],
-    },
-    new_tab_hover = {
-      bg_color = tokyo_colors.ansi[1],
-      fg_color = tokyo_colors.ansi[1],
-    },
-  }
-
-  local h, l, s, _ = wezterm.color.parse(tokyo_colors['selection_bg']):hsla()
-  tokyo_colors['selection_bg'] = wezterm.color.from_hsla(h, l, s, 0.4)
-  tokyo_colors['selection_fg'] = 'none'
-  tokyo_colors['tab_bar'] = tab_bar
-
-  return tokyo_colors
-end
-
-local tokyo_colors = modified_tokyo_night()
-
 return {
   default_prog = { "fish" },
 
@@ -66,17 +29,9 @@ return {
     -- The size of the font in the tab bar.
     -- Default to 10. on Windows but 12.0 on other systems
     font_size = 13,
-
-    -- The overall background color of the tab bar when
-    -- the window is focused
-    active_titlebar_bg = tokyo_colors.ansi[1],
-
-    -- The overall background color of the tab bar when
-    -- the window is not focused
-    inactive_titlebar_bg = tokyo_colors.background,
   },
 
-  colors = tokyo_colors,
+  color_scheme = 'Modus Vivendi',
 
   use_ime = false, -- only XIM is implemented
 
