@@ -1,3 +1,7 @@
+if not status is-interactive
+    return
+end
+
 set fish_greeting
 
 fish_add_path --path $HOME/scripts
@@ -8,10 +12,14 @@ fish_add_path --path $HOME/.local/bin
 set -x BAT_THEME "TwoDark"
 # set -x BAT_THEME "ansi-dark"
 
-set -x FZF_DEFAULT_OPTS '
-  --color fg:-1,bg:-1,hl:3,fg+:-1,bg+:0,hl+:3
-  --color gutter:-1,query:-1,disabled:0
-  --color info:6,prompt:5,spinner:1,pointer:3,marker:1,header:1:bold'
+set -x FZF_DEFAULT_OPTS "
+    --color fg:-1,hl:1,bg+:0,current-hl:red:bold \
+    --color current-fg:bright-blue:bold \
+    --color info:5:regular,prompt:5:bold,spinner:5:regular,pointer:blue,marker:yellow \
+    --color header:magenta:bold \
+    --wrap \
+    --border=none --multi \
+    --info=inline-right"
 fzf_key_bindings
 
 set -x MANPAGER "nvim +Man!"
@@ -19,7 +27,7 @@ set -x MANPAGER "nvim +Man!"
 set -x EDITOR nvim
 set -x VISUAL nvim
 
-alias cat='bat'
+alias cat='bat --plain'
 alias nb='newsboat'
 alias ip='ip -c'
 
